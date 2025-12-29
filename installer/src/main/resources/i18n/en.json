@@ -1,7 +1,8 @@
 {
   "CHECKING_INTERNET_CONNECTION": "Checking internet connection...",
   "DOWNLOADING_TRANSLATIONS": "Downloading translations...",
-  "SETUP_DEPENDENCIES": "Getting things ready...",
+  "SETUP_DEPENDENCIES": "Setting up dependencies...",
+  "PETTING_DINOSAUR": "Petting dinosaur...",
   "SETUP_COMPLETE": "Setup complete",
   "SELECT_GAME_INSTANCE": "Where would you like to install %s?",
   "INSTALL": "Install here",

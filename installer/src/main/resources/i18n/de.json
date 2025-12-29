@@ -1,9 +1,10 @@
 {
   "CHECKING_INTERNET_CONNECTION": "Internetverbindung wird geprüft...",
   "DOWNLOADING_TRANSLATIONS": "Übersetzungen werden heruntergeladen...",
-  "SETUP_DEPENDENCIES": "Stelle abhängigkeiten bereit...",
+  "SETUP_DEPENDENCIES": "Abhängigkeiten einrichten...",
   "SETUP_COMPLETE": "Installation abgeschlossen",
   "SELECT_GAME_INSTANCE": "Wo möchtest du %s installieren?",
+  "PETTING_DINOSAUR": "Dinos werden gestreichelt...",
   "INSTALL": "Hier installieren",
   "SCANNING_FOR_GAMES": "Suche nach Spielinstanzen...",
   "NO_GAMES_FOUND": "Keine Spielinstanzen gefunden. Bitte starte Minecraft (Forge).",

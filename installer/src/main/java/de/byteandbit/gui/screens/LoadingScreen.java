@@ -85,6 +85,9 @@ public class LoadingScreen implements Screen {
             } catch (IOException e) {
                 Gui.getInstance().errorAndExit(uiText("NO_TRANSLATIONS_ERROR"), e);
             }
+            updateStatus(uiText("PETTING_DINOSAUR"));
+            ui_wait();
+            ui_wait();
             updateStatus(uiText("SETUP_DEPENDENCIES"));
             ui_wait();
             try {
