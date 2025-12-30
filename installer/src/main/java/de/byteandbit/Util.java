@@ -217,6 +217,7 @@ public class Util {
      */
     public static <T> T getJsonResponse(String url, Class<T> clazz, ObjectMapper mapper) throws IOException {
         URL downloadUrl = new URL(url);
+        System.out.println("Fetching " + url);
         HttpURLConnection connection = (HttpURLConnection) downloadUrl.openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Accept", "application/json");
@@ -236,21 +237,5 @@ public class Util {
 
     public enum OS {
         WINDOWS, LINUX, MACOS, OTHER
-    }
-
-    public static byte[] readAllBytes(InputStream is) {
-        try {
-            ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-            int nRead;
-            byte[] data = new byte[16384];
-            while ((nRead = is.read(data, 0, data.length)) != -1) {
-                buffer.write(data, 0, nRead);
-            }
-            buffer.flush();
-            return buffer.toByteArray();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return new byte[0];
-        }
     }
 }

@@ -1,11 +1,12 @@
 package de.byteandbit.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.time.Instant;
 import java.util.List;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class License {
     @JsonProperty("_id")
@@ -20,20 +21,20 @@ public class License {
     private List<Feature> features;
     private List<User> users;
     private boolean dodoguard;
-
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class Owner {
         @JsonProperty("_link")
         private String link;
         private String username;
     }
-
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class UpdateStatus {
         private boolean limited;
         private Instant validUntil;
         private List<AppliedCode> appliedCodes;
-
+        @JsonIgnoreProperties(ignoreUnknown = true)
         @Data
         public static class AppliedCode {
             @JsonProperty("_internalId")
@@ -43,51 +44,51 @@ public class License {
             private int amount;
         }
     }
-
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class Product {
         private Identifier identifier;
         private List<Capability> capabilities;
-
+        @JsonIgnoreProperties(ignoreUnknown = true)
         @Data
         public static class Identifier {
             private String key;
             private String translationKey;
         }
-
+        @JsonIgnoreProperties(ignoreUnknown = true)
         @Data
         public static class Capability {
             private String type;
             private int amount;
         }
     }
-
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class CreationData {
         private Instant timestamp;
         private CreatedBy createdBy;
-
+        @JsonIgnoreProperties(ignoreUnknown = true)
         @Data
         public static class CreatedBy {
             private String name;
             private String type;
         }
     }
-
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class Feature {
         @JsonProperty("_link")
         private String link;
         private Identifier identifier;
         private List<Product.Capability> capabilities;
-
+        @JsonIgnoreProperties(ignoreUnknown = true)
         @Data
         public static class Identifier {
             private String key;
             private String translationKey;
         }
     }
-
+    @JsonIgnoreProperties(ignoreUnknown = true)
     @Data
     public static class User {
         @JsonProperty("_internalId")
