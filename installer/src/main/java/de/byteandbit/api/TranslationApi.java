@@ -11,6 +11,9 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * API for handling translations, providing local and remote language loading.
+ */
 public class TranslationApi {
 
     private static final ObjectMapper mapper = new ObjectMapper();

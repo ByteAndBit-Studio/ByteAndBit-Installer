@@ -14,6 +14,9 @@ import java.util.List;
 
 import static de.byteandbit.Util.getJsonResponse;
 
+/**
+ * API responsible for BAB product license management and download links.
+ */
 public class ProductApi {
     private static final ObjectMapper objectMapper = new ObjectMapper()
             .registerModule(new JavaTimeModule());
