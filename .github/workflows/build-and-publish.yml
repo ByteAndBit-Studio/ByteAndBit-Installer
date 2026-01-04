@@ -108,9 +108,17 @@ jobs:
       - name: Normalize Artifact Names
         run: |
           cd release-artifacts
+          # Rename original files
           find . -name "*.bin" -exec mv {} ByteAndBit-Installer-b${{ github.run_number }}.bin \;
           find . -name "*.exe" -exec mv {} ByteAndBit-Installer-b${{ github.run_number }}.exe \;
           find . -name "*.jar" -exec mv {} ByteAndBit-Installer-b${{ github.run_number }}.jar \;
+          
+          # Create individual zips
+          for f in *.bin *.exe *.jar; do
+            if [ -f "$f" ]; then
+              zip "${f}.zip" "$f"
+            fi
+          done
           ls -R
 
       - name: Create Release
@@ -119,8 +127,6 @@ jobs:
           tag_name: v${{ github.run_number }}
           name: Release v${{ github.run_number }}
           files: |
-            release-artifacts/**/*.bin
-            release-artifacts/**/*.exe
-            release-artifacts/**/*.jar
+            release-artifacts/**/*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
