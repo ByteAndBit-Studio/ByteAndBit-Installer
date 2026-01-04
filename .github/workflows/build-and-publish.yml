@@ -64,9 +64,9 @@ jobs:
         shell: bash
         if: matrix.os == 'windows-latest'
         run: |
-          echo '@echo off' > package/launch.cmd
-          echo 'SET "HERE=%~dp0"' >> package/launch.cmd
-          echo 'start "" "%HERE%installer-runtime\bin\javaw.exe" -jar "%HERE%installer.jar" %*' >> package/launch.cmd
+          echo "@echo off" > package/launch.cmd
+          echo "SET "HERE=%~dp0"" >> package/launch.cmd
+          echo "start "" "%HERE%installer-runtime/bin/javaw.exe" -jar "%HERE%installer.jar" %*" >> package/launch.cmd
       - name: Download warp-packer (Linux)
         if: matrix.os == 'ubuntu-latest'
         run: |
