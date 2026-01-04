@@ -85,6 +85,13 @@ jobs:
         if: matrix.os == 'windows-latest'
         run: |
           ./warp-packer.exe --arch windows-x64 --input_dir package --exec launch.cmd --output output/installer.exe
+      - name: Sign Application (Windows)
+        if: matrix.os == 'windows-latest'
+        uses: dlemstra/code-sign-action@v1
+        with:
+          files: output/installer.exe
+          certificate: ${{ secrets.BAB_PFX }}
+          password: ${{ secrets.BAB_PFX_SECRET }}
       - name: Upload OS-Specific Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -108,17 +115,9 @@ jobs:
       - name: Normalize Artifact Names
         run: |
           cd release-artifacts
-          # Rename original files
           find . -name "*.bin" -exec mv {} ByteAndBit-Installer-b${{ github.run_number }}.bin \;
           find . -name "*.exe" -exec mv {} ByteAndBit-Installer-b${{ github.run_number }}.exe \;
           find . -name "*.jar" -exec mv {} ByteAndBit-Installer-b${{ github.run_number }}.jar \;
-          
-          # Create individual zips
-          for f in *.bin *.exe *.jar; do
-            if [ -f "$f" ]; then
-              zip "${f}.zip" "$f"
-            fi
-          done
           ls -R
 
       - name: Create Release
@@ -127,6 +126,8 @@ jobs:
           tag_name: v${{ github.run_number }}
           name: Release v${{ github.run_number }}
           files: |
-            release-artifacts/**/*.zip
+            release-artifacts/**/*.bin
+            release-artifacts/**/*.exe
+            release-artifacts/**/*.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
