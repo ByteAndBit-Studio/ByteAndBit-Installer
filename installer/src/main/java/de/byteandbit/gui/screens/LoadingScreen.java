@@ -102,7 +102,7 @@ public class LoadingScreen implements Screen {
             }
             updateStatus(uiText("SETUP_COMPLETE"));
             ui_wait();
-            Gui.getInstance().showScreen(new LicenseScreen());
+            Gui.getInstance().showScreen(new LegalScreen());
         }).start();
     }
 
