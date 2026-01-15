@@ -51,18 +51,24 @@ public class Agent {
         System.out.println(log);
     }
 
-    public static String mcVersion() {
-        try (java.io.InputStream is = Agent.class.getResourceAsStream("/version.json")) {
-            if (is != null) {
-                com.fasterxml.jackson.databind.JsonNode node = new ObjectMapper().readTree(is);
-                if (node.has("id")) {
-                    return node.get("id").asText().replaceAll("-.*", "");
-                }
-            }
-        } catch (Exception ignored) {
-        }
-        return "unknown";
-    }
+	public static String mcVersion() {
+		try (java.io.InputStream is = Agent.class.getResourceAsStream("/version.json")) {
+			if (is != null) {
+				com.fasterxml.jackson.databind.JsonNode node = new ObjectMapper().readTree(is);
+				if (node.has("id")) {
+					return node.get("id").asText().replaceAll("-.*", "");
+				}
+			}
+		} catch (Exception e) {e.printStackTrace();}
+
+		try {
+			Class<?> clazz = Class.forName("net.minecraft.realms.RealmsSharedConstants");
+			String v = (String) clazz.getField("VERSION_STRING").get(null);
+			if(v != null) return v;
+		} catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {e.printStackTrace();}
+
+		return "unknown";
+	}
 
     public static boolean isForge() {
         for (String key : System.getProperties().stringPropertyNames()) {
